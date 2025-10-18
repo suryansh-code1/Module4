@@ -12,16 +12,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # ✅ allows push access
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit step - 23f2002898@ds.iitm.ac.in
+      # <-- make sure this name contains the exact required email
+      - name: Commit step - 23f2002898@ds.study.iitm.ac.in
         run: |
           echo "TDSFU Daily run: $(date -u) TDSFU" >> daily-log.txt
 
       - name: Git Commit and Push
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "23f2002898@ds.study.iitm.ac.in"
           git add daily-log.txt
-          git commit -m "Auto commit at $(date -u)" || echo "No changes to commit"
+          git commit -m "Auto commit at $(date -u) by 23f2002898@ds.study.iitm.ac.in" || echo "No changes to commit"
           git push
